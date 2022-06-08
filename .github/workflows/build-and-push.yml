@@ -9,6 +9,10 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+    
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       
@@ -25,6 +29,7 @@ jobs:
       - name: Build image and push to Docker Hub and GitHub Container Registry
         uses: docker/build-push-action@v3
         with:
-          tags: ghcr.io/oleonardorodrigues/atlantis-for-terragrunt:latest
-          # build on feature branches, push only on main branch
+          tags: |
+            ghcr.io/oleonardorodrigues/atlantis-for-terragrunt:latest
+            ghcr.io/oleonardorodrigues/atlantis-for-terragrunt:${{ steps.date.outputs.date }}-${{ github.run_number	}}
           push: ${{ github.ref == 'refs/heads/main' }}
