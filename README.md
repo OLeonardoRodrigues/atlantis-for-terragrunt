@@ -2,19 +2,13 @@
 
 Docker image for Atlantis with added Terragrunt support.
 
----
-
 ## About Atlantis
 
 A self-hosted golang application that listens for Terraform pull request events via webhooks.
 
----
-
 ## About Terragrunt
 
 Terragrunt is a thin wrapper that provides extra tools for keeping your configurations DRY, working with multiple Terraform modules, and managing remote state.
-
----
 
 ## References and Official Docs
 
